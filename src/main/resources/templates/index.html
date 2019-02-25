@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Lovexl</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="keywords" content="读《Web 全栈工程师的自我修养》">
+    <meta name="description" content="阅读影浅分享的读《Web 全栈工程师的自我修养》，就在牛客网。">
+
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome.min.css">
+
+    <link rel="stylesheet" media="all" href="/styles/style.css">
+
+    <script src="/scripts/hm.js"></script>
+    <script src="/scripts/detail.js"></script>
+
+    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.qrcode.min.js"></script>
+</head>
+
+<body class="welcome_index">
+<header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="localhost:8080/index" class="navbar-brand logo">
+                <h1>头条资讯</h1>
+                <h3>你关心的才是头条</h3>
+            </a>
+        </div>
+
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="http://localhost:8080/explore">发现</a></li>
+
+                <li><a href="http://nowcoder.com/signin">站内信</a></li>
+
+                <!--判断是否为空，有用 -->
+                <#if user??>
+                    <li class="js-login"><a href="javascript:void(0)">${user.getName()}</a></li>
+                <#else>
+                    <li class="js-login"><a href="javascript:void(0)">登陆</a></li>
+                </#if>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="main">
+    <div class="container" id="daily">
+        <div class="jscroll-inner">
+            <div class="daily">
+                <h3 class="date">
+                <i class="fa icon-calendar"></i>
+                <span>头条资讯 ${.now?string["yyyy-MM-dd"]}</span>
+                </h3>
+                <#list vos as vo>
+                <div class="posts">
+                    <div class="post">
+                    <div class="votebar">
+                        <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.get("news").getLikeCount()}</span></button>
+                        <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
+                        </button>
+                    </div>
+
+                        <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
+                            <div >
+                                <img class="content-img" src="${vo.get('news').getImage()}" alt="">
+                            </div>
+                            <div class="content-main">
+                                <h3 class="title">
+                                    <a target="_blank" rel="external nofollow" href="${vo.get("news").getLink()}">${vo.get("news").getTitle()},${vo.get("news").getCreatedDate() ?date} </a>
+                                </h3>
+                                <div class="meta">
+                                    ${vo.get("news").getLink()}
+                                    <span>
+                                                <i class="fa icon-comment"></i> ${vo.get("news").getCommentCount()}
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+<div class="user-info">
+    <div class="user-avatar">
+        <a href="/user/${vo.get('user').getId()}/"><img width="32" class="img-circle" src="${vo.get('user').getHeadUrl()}?imageView2/0/w/300/h/300"></a>
+    </div>
+</div>
+<div class="subject-name">来自 <a href="/user/${vo.get('user').getId()}/">${vo.get("user").getName()}</a></div>
+</div>
+</div>
+</#list>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<div class="container">
+<p class="text-center">
+<a href="http://nowcoder.com/about">关于我们</a>
+<a href="http://nowcoder.com/download">头条客户端</a>
+</p>
+<p class="text-center">© 2016-2019 头条八卦</p>
+</div>
+</footer>
+
+<script>window.loginpop = ${pop!};</script>
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+<script type="text/javascript" src="/scripts/main/base/base.js"></script>
+<script type="text/javascript" src="/scripts/main/base/util.js"></script>
+<script type="text/javascript" src="/scripts/main/base/event.js"></script>
+<script type="text/javascript" src="/scripts/main/component/component.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popup.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popupLogin.js"></script>
+<script type="text/javascript" src="/scripts/main/site/home.js"></script>
+
+</body>
+</html>

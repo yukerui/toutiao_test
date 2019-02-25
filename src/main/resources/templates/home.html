@@ -1,0 +1,54 @@
+<html>
+<body>
+    <div id="main">
+        <div class="container" id="daily">
+            <div class="jscroll-inner">
+                <div class="daily">
+                    <h3 class="date">
+                        <i class="fa icon-calendar"></i>
+                        <span>头条资讯 ${date?String('yyy-MM-dd')}</span>
+                    </h3>
+
+                    <div class="posts">
+                        <div class="post">
+                            <div class="votebar">
+                                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span class="count">${news.getLikeCount()}</span></button>
+                                <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
+                                </button>
+                            </div>
+                            <div class="content" data-url="/news/$!{news.id}">
+                                <div >
+                                    <img class="content-img" src="${news.getImage()}" alt="">
+                                </div>
+                                <div class="content-main">
+                                    <h3 class="title">
+                                        <a target="_blank" rel="external nofollow" href="/news/${news.getId()}">$!{news.getTitle()}</a>
+                                    </h3>
+                                    <div class="meta">
+                                        ${news.getLink()}
+                                        <span>
+                                            <i class="fa icon-comment"></i> ${news.getCommentCount()}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <a href="/user/$!{vo.user.id}/"><img width="32" class="img-circle" src="${news.getHeadUrl()}"></a>
+                                </div>
+                            </div>
+
+                            <div class="subject-name">来自 <a href="/user/${news.getLink()}/">${news.getName()}</a></div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
